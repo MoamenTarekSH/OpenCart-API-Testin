@@ -1,0 +1,477 @@
+{
+	"info": {
+		"_postman_id": "d1acbb48-7cd9-4216-ad35-f76c3f63bc44",
+		"name": "OpenCart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31106567",
+		"_collection_link": "https://dark-space-403387.postman.co/workspace/OpenCart~2c6f7990-75e2-48fd-b37c-1a66e59840c1/collection/31106567-d1acbb48-7cd9-4216-ad35-f76c3f63bc44?action=share&source=collection_link&creator=31106567"
+	},
+	"item": [
+		{
+			"name": "Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"apitoken\",jsonData.api_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eb8a06db76f5992fd3297fe747",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "demo33",
+							"type": "text"
+						},
+						{
+							"key": "key",
+							"value": "sRI7nITSkxb3nbAqBod5QZxJTOvUzJEyLJ6mXp2jeJ4pEljLsJ1Jt4fDVAY1RnXXLdRqARuy8hkf4tJTPLHeaggcbukxlztyUSEdaD5GCL0uQM2FaEw7UdvalU5q7mBN62OJROYus5L6ZOBKFdH1fauaYVHp3N4kXPNQj4cWE0WzrpQF8YYpFlLG8WFao3ah1fQLrxyEOWwkuegqVGl26cfzWtBHkJ6Oe5shKlWM8UNX0tRjdsi1IY3WltpfiJ7L",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.1.7/upload/index.php?route=api/login",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"7"
+					],
+					"path": [
+						"upload",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "route",
+							"value": "api/login"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddCart",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"pm.collectionVariables.set(\"product_id\",40);\r",
+							"pm.collectionVariables.set(\"quantuty\",5);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test Messsage:You have modified your shopping cart!\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.contain(\"Success: You have modified your shopping cart!\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{apitoken}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "api_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "key",
+							"value": "sRI7nITSkxb3nbAqBod5QZxJTOvUzJEyLJ6mXp2jeJ4pEljLsJ1Jt4fDVAY1RnXXLdRqARuy8hkf4tJTPLHeaggcbukxlztyUSEdaD5GCL0uQM2FaEw7UdvalU5q7mBN62OJROYus5L6ZOBKFdH1fauaYVHp3N4kXPNQj4cWE0WzrpQF8YYpFlLG8WFao3ah1fQLrxyEOWwkuegqVGl26cfzWtBHkJ6Oe5shKlWM8UNX0tRjdsi1IY3WltpfiJ7L",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "demo33",
+							"type": "text"
+						},
+						{
+							"key": "product_id",
+							"value": "41",
+							"type": "text"
+						},
+						{
+							"key": "quantuty",
+							"value": "5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.1.7/upload/index.php?route=api/cart/add&api_token={{apitoken}}",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"7"
+					],
+					"path": [
+						"upload",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "route",
+							"value": "api/cart/add"
+						},
+						{
+							"key": "api_token",
+							"value": "{{apitoken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Content Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"cartid\",jsonData.products[0].cart_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{apitoken}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "api_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "product_id",
+							"value": "{{product_id}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.1.7/upload/index.php?route=api/cart/products/{{product_id}}&api_token={{apitoken}}",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"7"
+					],
+					"path": [
+						"upload",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "route",
+							"value": "api/cart/products/{{product_id}}"
+						},
+						{
+							"key": "api_token",
+							"value": "{{apitoken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test Message: You have modified your shopping cart!\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.success).to.contain(\"Success: You have modified your shopping cart!\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{apitoken}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "api_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "key",
+							"value": "{{cartid}}",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "18",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.1.7/upload/index.php?route=api/cart/edit/{{cartid}}&api_token={{apitoken}}",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"7"
+					],
+					"path": [
+						"upload",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "route",
+							"value": "api/cart/edit/{{cartid}}"
+						},
+						{
+							"key": "api_token",
+							"value": "{{apitoken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.collectionVariables.unset(\"apitoken\");\r",
+							"pm.collectionVariables.unset(\"product_id\");\r",
+							"pm.collectionVariables.unset(\"quantuty\");\r",
+							"pm.environment.unset(\"cartid\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{apitoken}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "api_token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "key",
+							"value": "{{cartid}}",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "14",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://192.168.1.7/upload/index.php?route=api/cart/remove/{{cartid}}&api_token={{apitoken}}",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"7"
+					],
+					"path": [
+						"upload",
+						"index.php"
+					],
+					"query": [
+						{
+							"key": "route",
+							"value": "api/cart/remove/{{cartid}}"
+						},
+						{
+							"key": "api_token",
+							"value": "{{apitoken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eb8a06db76f5992fd3297fe747",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apitoken",
+			"value": ""
+		},
+		{
+			"key": "product_id",
+			"value": ""
+		},
+		{
+			"key": "quantuty",
+			"value": ""
+		}
+	]
+}
